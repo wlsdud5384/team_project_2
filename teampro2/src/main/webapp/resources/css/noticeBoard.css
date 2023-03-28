@@ -1,0 +1,224 @@
+@charset "UTF-8";
+
+/*게시판*/
+
+html {
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+body, ul, li, h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+.con {
+	margin: 0 auto;
+}
+
+
+.con {
+	max-width: 950px;
+}
+
+.con-min-width {
+	min-width: 320px;
+}
+
+td {
+	text-align: center;
+}
+.table-common>table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table-common .btn-box {
+	text-align:center;
+}
+
+.table-common>table th, .table-common>table td {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.article-list table {
+    border:none;   
+    border-top:2px solid lightgray;
+    border-bottom:2px solid lightgray;
+}
+
+.article-list > table th, .article-list > table td {
+    border:none;
+}
+
+.article-list > table td {
+    border-bottom:1px solid lightgray;
+}
+
+.article-list > table thead {
+    border-bottom:2px solid lightgray;
+    background-color:#F5F5F5;
+}
+
+.article-detail {
+    border:2px solid lightgray;
+}
+
+.article-detail > table {
+    border:none;
+    width:calc(100% - 100px);
+}
+
+.article-detail > table th, .article-detail > table td {
+    border:none;
+}
+
+.article-detail > table tr:not(:last-child) {
+    border-bottom:1px solid lightgray;
+}
+
+.article-detail > table tr:not(.article-body), .article-detail > table tr:not(.article-body) > td{
+    height:20px;
+    font-size:0.8rem;
+}
+
+.article-detail > table tr.article-title > td {
+    height:40px;
+    font-weight:bold;
+    font-size:1.2rem;
+}
+
+.article-detail > table td:last-child {
+    padding-right:100px;
+}
+
+.article-detail > .article-writer {
+    width:100px;
+    height:102px;
+    background-color:lightgray;
+    border-bottom:1px solid lightgray;
+    text-align:center;
+}
+
+.article-detail > .article-writer .writer-icon {
+    margin:0 auto;
+    background-color:white;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+
+/*검색창*/
+legend{
+	display: none;
+}
+
+fieldset{
+	border: 0
+  }
+
+/* 검색 */
+.sub_sps_sch { 
+	box-sizing: border-box; 
+	margin-bottom: 10px;
+	text-align: center;
+}
+.sub_sps_sch div.select-box{
+	width:100px; 
+	height:26px;
+	display:inline-block; 
+	border:1px solid #c9c9c9; 
+	vertical-align: middle;
+}
+
+.sub_sps_sch select {
+	height: 26px; 
+	width: 100px; 
+	color: #666; 
+	border:0;
+}
+
+.sub_sps_sch .search_box{
+	position:relative;
+	display:inline-block;
+}
+
+.sub_sps_sch .search_box input[type="text"]{
+	height:26px;
+	width:280px;padding-right:20px;
+	margin-right: 2px; 
+	border:1px solid #c9c9c9; 
+	background-color: #fff;
+}
+
+.sub_sps_sch .btn_submit{
+	width: 60px; 
+	line-height: 26px; 
+	background-color: #848484; 
+	color: #fff; 
+	text-align: center; 
+	border: 0; 
+	font-size: 13px;
+}
+
+/* 셀렉트박스 */
+.select-box { 
+	position: relative;
+	width: 200px;
+	height: 26px; 
+	background: #fff url('http://unibell.jnkworks.com/img/sub/search_arrow.png') no-repeat right top; border:none;
+}
+
+div.select-box label { 
+	position: absolute;    
+	font-size: 12px; 
+	font-weight:bold; 
+	color: #525252;    
+	top: 6px;    
+	left: 10px;    
+	letter-spacing: 1px;
+}
+
+div.select-box select {
+	width: 100%;    
+	height: 26px;    
+	min-height: 26px;    
+	line-height: 26px;    
+	padding: 0 10px;    
+	opacity: 0;    
+	filter: alpha(opacity=0); 
+	/* IE 8 */ background-color: #fff;
+}
+
+/*페이지넘김 바*/
+.page-box {
+  width: 80%;
+  margin: 5px auto;
+  height: 30px;
+  text-align: center;
+}
+.page-box a.btn {
+  display:inline-block;
+  padding: 3px 5px;
+  font-size: 20px;
+  border: 1px solid #dbdbdb;
+  color: #333;
+}
+.page-box a.btn.on {
+  background-color: #dbdbdb;
+}
+
+/*글 쓰기 */
+.btn_box{
+	position:relative;
+	display:inline-block;
+}
+.btn_box input[type="text"]{
+	height:26px;
+	width:280px;padding-right:20px;
+	margin-right: 2px; 
+	border:1px solid #c9c9c9; 
+	background-color: #fff;
+}

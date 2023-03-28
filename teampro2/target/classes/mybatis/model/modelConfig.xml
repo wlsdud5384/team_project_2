@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.sweethome.sweet.member.vo.MemberVO"  alias="memberVO" />
+		<typeAlias type="com.sweethome.sweet.board.vo.ArticleVO"  alias="articleVO" />
+		<typeAlias type="com.sweethome.sweet.board.vo.ImageVO"  alias="imageVO" />
+		<typeAlias type="com.sweethome.sweet.member.vo.GoodsVO"  alias="goodsVO" />
+		<typeAlias alias="kakaoDTO" type="com.sweethome.sweet.member.vo.KakaoDTO"/>
+		<!-- 사업자 VO  -->		
+		<typeAlias type="com.sweethome.sweet.memberB.vo.MemberVOB"  alias="memberVOB" />
+		<typeAlias type="com.sweethome.sweet.memberB.vo.ContractVO"  alias="contractVO" />
+	</typeAliases>
+</configuration>

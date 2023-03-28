@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+		<!-- 여기 baseLayout 이건 일반 메인페이지다. 사이드바 는 헌민이형 구현되면 갖고오면된다.ㅋㅋㅋ  -->
+   <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+   		
+   		
+   		<!-- 이거 baseLayoutA 는 관리자 페이지 눌렀을시 사이드바 바뀌게 하려고 새로 작성한것 -->
+   <definition name="baseLayoutA"  template="/WEB-INF/views/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="side" value="/WEB-INF/views/common/sideM.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+   
+   	<!-- 이건 사이드 빈 껍데기  이거 쓰지마 B 쓰면안됨 -->
+    <definition name="baseLayoutJ"  template="/WEB-INF/views/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition> 
+   
+   
+	
+<!-- 	일반 메인페이지로 이동경로  -->
+   <definition name="main" extends="baseLayout">
+      <put-attribute name="title" value="메인페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+      <put-attribute name="side" value="/WEB-INF/views/main.jsp"/>
+   </definition>
+  
+    
+    
+    	<!-- 로그인 화면 경로 사이드바 는 없앴음 지금은 아마 앞으로도 필요없어 -->
+    <definition name="/member/loginForm" extends="baseLayoutB">
+      <put-attribute name="title" value="로그인창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+	  <put-attribute name="side" value=""/>
+      
+   </definition> 
+      
+				<!-- 회원가입 이동경로 페이지 -->
+   <definition name="/member/memberForm" extends="baseLayoutJ">
+      <put-attribute name="title" value="회원등록창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
+   </definition>
+   
+   				<!--  사업자 회원가입 이동경로 페이지 -->
+   <definition name="/member/businessForm" extends="baseLayoutJ">
+      <put-attribute name="title" value="회원등록창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/businessForm.jsp" />
+   </definition>
+
+   <definition name="/admin/viewDetail" extends="baseLayout">
+      <put-attribute name="title" value="회원상세창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin/viewDetail.jsp" />
+   </definition> 
+</tiles-definitions>

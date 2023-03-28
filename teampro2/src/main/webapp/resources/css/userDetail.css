@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css?family=PT+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap');
+
+/* -font-
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Oswald', sans-serif;  
+  font-family: 'Averia Serif Libre', cursive; 
+  font-family: 'PT Serif', serif;
+  font-family: 'Noto Sans KR', sans-serif;
+*/
+
+body {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+h3 {
+    font-size: 4em;
+    line-height: 0.5em;
+    color: #000 !important;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline;
+}
+
+h5 {
+    font-size: 2em;
+    line-height: 0.1em;
+    color: #000;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline;
+}
+
+/* 버튼 기본설정*/
+.d-button {
+    color: #000;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    display: inline-block;
+    background-color: #fff;
+}
+
+/*회원구분+가입양식*/
+.sign {
+    border: 0px solid blue;
+    width: 1100px;
+    margin: 0 auto;
+
+}
+
+.sign h3 {
+    font-size: 1.5em;
+    padding: 20px;
+    line-height: 2em;
+
+}
+
+.sign h5 {
+    font-size: 1.2em;
+    padding: 20px;
+    line-height: 2em;
+
+}
+
+.hr1 {
+    margin: 20px auto 10px;
+    border: 1px solid black;
+}
+
+.hr2 {
+    margin: 20px auto 10px;
+}
+
+.sign-text {
+    border: px solid blue;
+    float: left;
+
+}
+
+.sign-input {
+    border: 0px solid black;
+    width: 800px;
+    margin: auto;
+    padding: 0px;
+
+}
+
+.sign-input .d-button {
+    padding: '';
+    margin: 0px;
+    border: 1px solid lightgray;
+    width: 60px;
+    height: 10px;
+    position: relative;
+    top: 2px;
+    line-height: 1em;
+    cursor: pointer;
+}
+
+.ia {
+    padding: 10px;
+    margin-right: 15px;
+}
+
+.ib {
+    padding: 6px;
+    width: 60px;
+    height: 30px;
+}
+
+.sign select {
+    padding: 6px;
+}
+
+/*회원가입버튼*/
+.sign-button {
+    border: 0px solid blue;
+    width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sign-button .d-button {
+    background-color: lightgray;
+    padding: 10px 30px;
+
+    color: #222;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.sign-button .d-button:hover {
+    background-color: #222;
+    color: #fff;
+    font-weight: normal;
+}

@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+body {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 관심목록 */
+
+table {
+    text-align: center;
+}
+
+.con {
+    margin: 0 auto;
+}
+
+.con {
+    max-width: 950px;
+}
+
+.table-common>table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.table-common>table th,
+.table-common>table td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.article-list table {
+    border: none;
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+}
+
+.article-list>table th,
+.article-list>table td {
+    border: none;
+}
+
+.article-list>table td {
+    border-bottom: 1px solid lightgray;
+}
+
+.article-list>table thead {
+    border-bottom: 2px solid lightgray;
+    background-color: #F5F5F5;
+}
+
+/*이미지*/
+
+.myPageImg {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+    flex: 1;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 페이징 버튼 */
+.page-box {
+    width: 80%;
+    margin: auto;
+    height: auto;
+    text-align: center;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.page-box a.btn {
+    padding: 3px 5px;
+    font-size: 25px;
+    border: 1px solid #dbdbdb;
+    color: #333;
+}
+
+.page-box a.btn.on {
+    background-color: #dbdbdb;
+}

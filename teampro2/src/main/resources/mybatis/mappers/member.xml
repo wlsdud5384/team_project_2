@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">	
+   <resultMap id="memResult" type="memberVO">
+	  <result property="member_join" column="member_join"/>
+      <result property="member_id" column="member_id" />
+      <result property="member_pw" column="member_pw" />
+      <result property="name" column="name" />
+      <result property="email1" column="email1" />
+      <result property="email2" column="email2" />
+      <result property="addr1" column="addr1" />
+      <result property="addr2" column="addr2" />
+      <result property="addr3" column="addr3" />
+      <result property="tel1" column="tel1" />
+      <result property="tel2" column="tel2" />
+      <result property="tel3" column="tel3" />
+      <result property="hp1" column="hp1" />
+      <result property="hp2" column="hp2" />
+      <result property="hp3" column="hp3" />
+      <result property="member_birth" column="member_birth" />
+      <result property="join_date" column="join_date" />
+      <result property="last_date" column="last_date" />
+      <result property="stop_date" column="stop_date" />
+      <result property="status" column="status" />
+      <result property="location_x" column="location_x" />
+      <result property="location_y" column="location_y" />      
+   </resultMap> 
+   
+   <resultMap id="goodsResult" type="goodsVO">
+      <result property="goods_id" column="goods_id" />
+      <result property="name" column="name" />
+      <result property="img1" column="img1" />
+      <result property="img2" column="img2" />
+      <result property="img3" column="img3" />
+      <result property="img4" column="img4" />
+      <result property="img5" column="img5" />
+      <result property="img6" column="img6" />
+      <result property="type" column="type" />
+      <result property="floor" column="floor" />
+      <result property="area" column="area" />
+      <result property="room_num" column="room_num" />
+      <result property="bthroom_num" column="bthroom_num" />
+      <result property="homeDrctn" column="homeDrctn" />
+      <result property="ht_type" column="ht_type" />
+      <result property="parking" column="parking" />
+      <result property="parking_pay" column="parking_pay" />
+      <result property="elevator" column="elevator" />
+      <result property="veranda" column="veranda" />
+      <result property="mainUse" column="mainUse" />
+      <result property="move_in_date" column="move_in_date" />
+      <result property="using_date" column="using_date" />
+      <result property="make_date" column="make_date" />
+      <result property="remove_date" column="remove_date" />
+      <result property="goods_dp_id" column="goods_dp_id" />
+      <result property="deposit" column="deposit" />
+      <result property="jeonse" column="jeonse" />
+      <result property="payment" column="payment" />
+      <result property="m_payment" column="m_payment" />
+      <result property="b_payment" column="b_payment" />
+      <result property="main_cost" column="main_cost" />
+      <result property="content" column="content" />
+      <result property="location_x" column="location_x" />
+      <result property="location_y" column="location_y" />
+      <result property="status" column="status" />
+      <result property="like" column="like" />
+      <result property="addr1" column="addr1" />
+      <result property="addr2" column="addr2" />
+      <result property="region" column="region" />
+   </resultMap> 
+   
+   
+   <resultMap id="kakaoResult" type="kakaoDTO">
+      <result property="number" column="number" />
+      <result property="nickname" column="nickname" />
+      <result property="email" column="email" />
+   </resultMap> 
+
+ 
+ 
+   <select id="selectAllMemberList" resultMap="memResult"   >
+      <![CDATA[
+        select * from member order by join_Date
+      ]]>
+   </select>
+   
+   <select id="selectAllGoodsList" resultMap="goodsResult"   >
+      <![CDATA[
+        select * from goods order by goods_id			
+      ]]>
+   </select>
+
+			<!-- 인설트멤버 회원 정보를 추가하거나 회원가입 할때 쿼리 구문이다. -->
+	<insert id="insertMember" parameterType="memberVO">
+		<![CDATA[
+			insert into member(member_id, member_pw, name, email1,
+			email2, addr1, addr2, addr3, tel1,
+			tel2, tel3, hp1, hp2, hp3, member_birth)
+			values(#{member_id}, #{member_pw}, #{name}, #{email1}, #{email2},
+			#{addr1}, #{addr2}, #{addr3},  #{tel1}, #{tel2}, #{tel3},
+			#{hp1}, #{hp2}, #{hp3}, #{member_birth} )
+			
+						
+		]]>
+	</insert>
+					<!-- id 중복체크 하기위한 쿼리구문이다.크킄 
+					함수에서 개수가 0보다 큰지 확인하여 ID가 ​​이미 사용 중임을 나타낼 수 있는 쿼리문
+					제발돼라!!!!!!!!!!! 다시원상 복기 03.21  3교시..!!!
+					
+					 -->
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+ 	 select * from member 
+	   where member_id = #{id}
+	</select>
+	
+	
+	
+	
+
+		<!-- update member set member_join=#{member_join}, member_id=#{member_id}, member_pw=#{member_pw}, name=#{name}, 
+		member_birth=#{member_birth}, email=#{email}, hp1=#{hp1}, tel1=#{tel1}, status=#{status}, 
+		addr1=#{addr1}, join_date=#{join_date} where member_id=#{member_id} -->
+	
+	
+	
+	
+	
+	
+	<!-- 회원 수정하기위한 쿼리 구문 완성이다  -->
+	<update id="updateMember" parameterType="memberVO">
+		<![CDATA[
+			UPDATE member SET
+			member_id=#{member_id},
+			member_pw=#{member_pw},
+			name=#{name},
+			member_birth=#{member_birth},
+			email1=#{email1},
+			email2=#{email2},
+			hp1=#{hp1},
+			hp2=#{hp2},
+			hp3=#{hp3},
+			tel1=#{tel1},
+			tel2=#{tel2},
+			tel3=#{tel3},
+			status=#{status},
+			addr1=#{addr1},
+			addr2=#{addr2},
+			addr3=#{addr3}
+			WHERE member_id=#{member_id}
+		]]>
+	</update>
+	
+	<!-- 회원 정지 시킬때 쿼리문이다  -->
+	<update id="stopMember" parameterType="memberVO">
+		<![CDATA[
+			UPDATE member SET
+			status=#{status} WHERE member_id=#{member_id} 
+		]]>
+	</update>
+	
+
+
+  <select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
+	<![CDATA[
+		select * from member	
+		where member_id=#{member_id} and member_pw=#{member_pw}		
+	]]>
+  </select>
+  <select id="selectMemberById" resultType="memberVO" parameterType="String">
+		<![CDATA[
+			select * from member where member_id = #{member_id}
+		]]>
+	</select>
+	
+	
+	<select id="findKakao" parameterType="java.util.HashMap" resultType="kakaoDTO">
+		select * from kakao_table where nickname=#{nickname} and email=#{email}
+	</select>
+	
+	<insert id="kakaoInsert" parameterType="java.util.HashMap">
+		insert into kakao_table(nickname, email)
+			values(#{nickname}, #{email})
+	</insert>
+	
+	<select id="kakaoNumber" parameterType="kakaoDTO" resultType="kakaoDTO">
+		select * from kakao_table where nickname=#{nickname} and email=#{email}
+	</select>
+
+</mapper>

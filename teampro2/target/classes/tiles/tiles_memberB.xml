@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="baseLayoutB"  template="/WEB-INF/views/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="side" value="/WEB-INF/views/common/sideB.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+   
+   <definition name="/memberB/loginFormB" extends="baseLayoutB">
+      <put-attribute name="title" value="로그인창" />
+      <put-attribute name="body" value="/WEB-INF/views/memberB/loginFormB.jsp" />
+      <put-attribute name="side" value="" />
+   </definition>
+   				<!-- 사업자 마이페이지 이동경로 -->
+   <definition name="/memberB/myPageMainB" extends="baseLayoutB">
+	      <put-attribute name="title" value="마이페이지메인" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/myPageMainB.jsp" />
+	</definition>
+   
+	<definition name="/memberB/modMemberB" extends="baseLayoutB">
+		<put-attribute name="title" value="회원수정창"/>
+		<put-attribute name="body" value="/WEB-INF/views/memberB/modMemberB.jsp"/>
+	</definition>
+   
+   <definition name="/memberB/listContractB" extends="baseLayoutB">
+	      <put-attribute name="title" value="계약내역" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/listContractB.jsp" />
+	</definition>
+   
+	<definition name="/memberB/goodsList" extends="baseLayoutB">
+	      <put-attribute name="title" value="상품목록창" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/goodsList.jsp" />
+	</definition>
+	
+	<definition name="/memberB/goodsDetail" extends="baseLayoutB">
+	      <put-attribute name="title" value="상품상세창" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/goodsDetail.jsp" />
+	</definition>
+	
+	<definition name="/memberB/goodsAdd" extends="baseLayoutB">
+	      <put-attribute name="title" value="상품등록창" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/goodsAdd.jsp" />
+	</definition>
+	
+	<definition name="/memberB/goodsMod" extends="baseLayoutB">
+	      <put-attribute name="title" value="상품수정창" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/goodsMod.jsp" />
+	</definition>
+	
+	<definition name="/memberB/QList" extends="baseLayoutB">
+	      <put-attribute name="title" value="상품문의내역" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/QList.jsp" />
+	</definition>
+	
+</tiles-definitions>

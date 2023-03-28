@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+   <definition name="baseLayout_User"  template="/WEB-INF/views/common/layout/layout_User.jsp">
+      <put-attribute name="title_User" value="" />
+      <put-attribute name="header_User" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="side_User" value="/WEB-INF/views/common/side/side_User.jsp" />
+      <put-attribute name="body_User" value="" />
+      <put-attribute name="footer_User" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+
+   <definition name="/user/userMain" extends="baseLayout_User">
+      <put-attribute name="title_User" value="사용자 메인 페이지" />
+      <put-attribute name="body_User" value="/WEB-INF/views/user/userMain.jsp" />
+   </definition>
+   
+    <definition name="/user/userDetailInfo" extends="baseLayout_User">
+      <put-attribute name="title_User" value="사용자 회원정보수정" />
+      <put-attribute name="body_User" value="/WEB-INF/views/user/userDetailInfo.jsp" />
+   </definition>
+   
+    <definition name="/user/watchList" extends="baseLayout_User">
+      <put-attribute name="title_User" value="사용자 관심목록" />
+      <put-attribute name="body_User" value="/WEB-INF/views/user/watchList.jsp" />
+   </definition>
+   
+    <definition name="/user/deleteInfo" extends="baseLayout_User">
+      <put-attribute name="title_User" value="사용자 관심목록" />
+      <put-attribute name="body_User" value="/WEB-INF/views/user/deleteInfo.jsp" />
+   </definition>
+	
+	<definition name="/user/memberDeleteView" extends="baseLayout_User">
+      <put-attribute name="title_User" value="회원 탈퇴" />
+      <put-attribute name="body_User" value="/WEB-INF/views/user/memberDeleteView.jsp" />
+   </definition>
+   
+   <definition name="/user/userContract" extends="baseLayout_User">
+      <put-attribute name="title_User" value="계약내역" />
+      <put-attribute name="body_User" value="/WEB-INF/views/user/userContract.jsp" />
+   </definition>
+   
+</tiles-definitions>

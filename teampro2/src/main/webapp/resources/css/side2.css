@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+
+
+.btnon_C {
+	width: 130px;
+	height: 35px;
+	margin-top: 20px;
+	margin-left: 20px;
+	border: 1px #112d4e solid; border-radius : 4px;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: white;
+	color: #112d4e;
+	border-radius: 4px;
+}
+
+.btnon_C:hover {
+	width: 130px;
+	height: 35px;
+	margin-top: 20px; 
+	margin-left : 20px;
+	border: none;
+	border-radius: 4px;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #112d4e;
+	color: white;
+}

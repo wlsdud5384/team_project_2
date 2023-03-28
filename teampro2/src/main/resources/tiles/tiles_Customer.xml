@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+   <definition name="baseLayout_Customer"  template="/WEB-INF/views/common/layout/layout_Customer.jsp">
+      <put-attribute name="title_Customer" value="" />
+      <put-attribute name="header_Customer" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="side_Customer" value="/WEB-INF/views/common/side/side_Customer.jsp" />
+      <put-attribute name="body_Customer" value="" />
+      <put-attribute name="footer_Customer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+
+   <definition name="/customer/customerMain" extends="baseLayout_Customer">
+      <put-attribute name="title_Customer" value="고객 센터" />
+      <put-attribute name="body_Customer" value="/WEB-INF/views/customer/customerMain.jsp" />
+   </definition>
+   
+   <definition name="/customer/noticeBoard" extends="baseLayout_Customer">
+      <put-attribute name="title_Customer" value="고객 센터" />
+      <put-attribute name="body_Customer" value="/WEB-INF/views/customer/noticeBoard.jsp" />
+   </definition>
+   
+</tiles-definitions>

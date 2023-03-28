@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+body {
+    overflow: auto;
+    height: 100vh;
+}
+
+/* 스크롤, 화면세로로 길게  */
+
+
+
+.myPageMain {
+    margin: 0px;
+    width: 1000px;
+    float: left;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+
+    margin: 0px;
+    color: #666;
+}
+
+/* 나의 정보 */
+
+.sign h5 {
+    font-size: 1.2em;
+    padding: 20px;
+    line-height: 2em;
+}
+
+.myPageCategory {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.myPageCategory h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 40px;
+}
+
+.myPageCategory button {
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: #112d4e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.myPageImg {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+    flex: 1;
+    margin-bottom: 50px;
+}
+
+.myPageImg+.myPageImg {
+    margin-left: 100px;
+}
+
+
+.myPageHr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}
