@@ -10,9 +10,7 @@
       <result property="bp_pw" column="bp_pw" />
       <result property="name" column="name" />
       <result property="dp_name" column="dp_name" />
-      <result property="email1" column="email1" />
-      <result property="email2" column="email2" />
-
+      <result property="email" column="email" />
       <result property="addr1" column="addr1" />
       <result property="addr2" column="addr2" />
       <result property="addr3" column="addr3" />
@@ -47,6 +45,25 @@
    </resultMap> 
  
  
+ 	   <insert id="insertMemberB" parameterType="memberVOB">
+      <![CDATA[
+         insert into business(bp_id, bp_pw, name, dp_name, email, 
+         addr1, addr2, addr3, tel1, tel2, tel3, hp1, hp2, hp3)
+         values(#{bp_id}, #{bp_pw}, #{name}, #{dp_name}, #{email},
+         #{addr1}, #{addr2}, #{addr3},  #{tel1}, #{tel2}, #{tel3},
+         #{hp1}, #{hp2}, #{hp3} )
+      ]]>
+   </insert>
+               <!-- id 중복체크 하기위한 쿼리구문이다.크킄 
+               함수에서 개수가 0보다 큰지 확인하여 ID가 ​​이미 사용 중임을 나타낼 수 있는 쿼리문
+               제발돼라!!!!!!!!!!! 다시원상 복기 03.21  3교시..!!!
+               
+                -->
+   <select id="selectOverlappedIDB" parameterType="String" resultType="String">
+     select * from business 
+      where bp_id = #{bp_id}
+   </select>
+   
 	 <select id="loginByIdB"  resultType="memberVOB"   parameterType="memberVOB" >
 		<![CDATA[
 			select * from business	
@@ -60,26 +77,24 @@
       ]]>
    </select>
    
-   <update id="updateMemberB"  parameterType="memberVOB">
-     <![CDATA[
-	     update business
-	     set bp_pw=#{bp_pw}, 
-	     	 name=#{name}, 
-	     	 email1=#{email1},
-	     	 email2=#{email2},
-	     	 addr1=#{addr1},
-			 addr2=#{addr2},
-			 addr3=#{addr3},
-			 tel1=#{tel1},
-			 tel2=#{tel2},
-			 tel3=#{tel3},
-			 hp1=#{hp1},
-			 hp2=#{hp2}
-			 hp3=#{hp3}
-	     where
-	     bp_id=#{bp_id}
-      ]]>      
-   </update> 
+  <update id="updateMemberB" parameterType="memberVOB">
+	  <![CDATA[
+	    update business
+	    set bp_pw=#{bp_pw}, 
+	        name=#{name}, 
+	        email=#{email},
+	        addr1=#{addr1},
+	        addr2=#{addr2},
+	        addr3=#{addr3},
+	        tel1=#{tel1},
+	        tel2=#{tel2},
+	        tel3=#{tel3},
+	        hp1=#{hp1},
+	        hp2=#{hp2},
+	        hp3=#{hp3}
+	    where bp_id=#{bp_id}
+	  ]]>
+  </update>
    
    <select id="selectContractByIdB" resultMap="contractResultB">
     <![CDATA[
@@ -88,5 +103,24 @@
         ORDER BY goodscon_id DESC
     ]]>
 	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="memberDeleteB" parameterType="memberVOB">
+	   <![CDATA[	
+			delete FROM business
+			where bp_id=#{bp_id}
+			and bp_pw=#{bp_pw}
+		]]>
+	</delete>
+	
+	<!-- 회원정보조회 -->
+	<select id="selectMemberB" parameterType="String" resultType="MemberVOB">
+	SELECT * FROM business WHERE email = #{email} 
+	</select>
+	
+	<!-- 비밀번호변경 -->
+	<update id = "pwUpdate" parameterType="MemberVOB">
+	update business set bp_pw=#{bp_pw} where email = #{email}
+	</update>
 
 </mapper>

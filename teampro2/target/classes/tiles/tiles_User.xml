@@ -41,4 +41,32 @@
       <put-attribute name="body_User" value="/WEB-INF/views/user/userContract.jsp" />
    </definition>
    
+   <definition name="/user/modMembers" extends="baseLayout_User">
+      <put-attribute name="title_User" value="회원정보수정" />
+      <put-attribute name="body_User" value="/WEB-INF/views/user/modMembers.jsp" />
+   </definition>
+   
+   
+   <definition name="/message/listMessage" extends="baseLayout_User">
+      <put-attribute name="title_User" value="쪽지함" />
+      <put-attribute name="body_User" value="/WEB-INF/views/message/listMessage.jsp" />
+   </definition>
+   
+   <definition name="/message/messageForm" extends="baseLayout_User">
+      <put-attribute name="title_User" value="쪽지쓰기" />
+      <put-attribute name="body_User" value="/WEB-INF/views/message/messageForm.jsp" />
+   </definition>
+   
+   <definition name="/message/viewMessage" extends="baseLayout_User">
+      <put-attribute name="title_User" value="쪽지상세보기" />
+      <put-attribute name="body_User" value="/WEB-INF/views/message/viewMessage.jsp" />
+   </definition>
+   
+   
+   
+   
+   
+   
+   
+   
 </tiles-definitions>

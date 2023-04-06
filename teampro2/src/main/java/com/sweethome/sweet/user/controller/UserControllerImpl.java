@@ -69,22 +69,22 @@ public class UserControllerImpl implements UserController {
 		return mav;
 	}
 	
-	//È¸¿ø Å»Åğ get
+	//íšŒì›íƒˆí‡´í˜ì´ì§€ get
 		@RequestMapping(value="/memberDeleteView.do", method = RequestMethod.GET)
 		public String deleteUser() throws Exception{
 		return "/user/memberDeleteView";
 		}
 		
 				
-	//È¸¿øÅ»Åğ post
+	//íšŒì›íƒˆí‡´ post
 	@RequestMapping(value="/memberDelete.do", method = RequestMethod.POST)
 	public String memberDelete(MemberVO memberVO, HttpSession session, RedirectAttributes rttr) throws Exception{
 					
 		MemberVO member = (MemberVO) session.getAttribute("member");
 					
-		// Àü
+		// ï¿½ï¿½
 		String currentPw = member.getMember_pw();
-		// ÈÄ
+		// ï¿½ï¿½
 		String userInputPw = memberVO.getMember_pw();
 					
 		if(!(currentPw.equals(userInputPw))) {

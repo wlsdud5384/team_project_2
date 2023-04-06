@@ -9,13 +9,26 @@ import com.sweethome.sweet.board.vo.ArticleVO;
 
 
 public interface BoardDAO {
-	public List selectAllArticlesList() throws DataAccessException;
-	public int insertNewArticle(Map articleMap) throws DataAccessException;
-	//public void insertNewImage(Map articleMap) throws DataAccessException;
 	
-	public ArticleVO selectArticle(int articleNO) throws DataAccessException;
+	
+				// 리스트 목록 게시판 목록
+	public List selectAllArticlesList() throws DataAccessException;
+	
+				// 추가추가
+	public int insertNewArticle(Map<String, Object> articleMap) throws DataAccessException;
+	//public void insertNewImage(Map articleMap) throws DataAccessException;
+			
+	
+				// 글상세 보여줄때 섭;ㅣ스
+	public ArticleVO selectArticle(int board_id) throws DataAccessException;
+			
+	
+				//수정
 	public void updateArticle(Map articleMap) throws DataAccessException;
-	public void deleteArticle(int articleNO) throws DataAccessException;
-	public List selectImageFileList(int articleNO) throws DataAccessException;
+				// 삭제
+	public void deleteArticle(int board_id) throws DataAccessException;
+				// 이미지
+	public List selectImageFileList(int board_id) throws DataAccessException;
+
 	
 }

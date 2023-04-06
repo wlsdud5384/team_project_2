@@ -11,11 +11,36 @@
       <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
    </definition>
    
+   <definition name="/memberB/memberFormB" extends="baseLayoutJ">
+      <put-attribute name="title" value="회원등록창" />
+      <put-attribute name="body" value="/WEB-INF/views/memberB/memberFormB.jsp" />
+      <put-attribute name="side" value="" />
+   </definition>
+   
    <definition name="/memberB/loginFormB" extends="baseLayoutB">
       <put-attribute name="title" value="로그인창" />
       <put-attribute name="body" value="/WEB-INF/views/memberB/loginFormB.jsp" />
       <put-attribute name="side" value="" />
    </definition>
+   
+   <definition name="/find/pwFindB" extends="baseLayoutB">
+      <put-attribute name="title" value="비밀번호찾기" />
+      <put-attribute name="body" value="/WEB-INF/views/find/pwFindB.jsp" />
+      <put-attribute name="side" value="" />
+   </definition>
+   
+   <definition name="/find/checkEmailB" extends="baseLayoutB">
+      <put-attribute name="title" value="인증번호확인" />
+      <put-attribute name="body" value="/WEB-INF/views/find/checkEmailB.jsp" />
+      <put-attribute name="side" value="" />
+   </definition>
+   
+   <definition name="/find/pwNewB" extends="baseLayoutB">
+      <put-attribute name="title" value="새비밀번호" />
+      <put-attribute name="body" value="/WEB-INF/views/find/pwNewB.jsp" />
+      <put-attribute name="side" value="" />
+   </definition>
+   
    				<!-- 사업자 마이페이지 이동경로 -->
    <definition name="/memberB/myPageMainB" extends="baseLayoutB">
 	      <put-attribute name="title" value="마이페이지메인" />
@@ -27,9 +52,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/memberB/modMemberB.jsp"/>
 	</definition>
    
-   <definition name="/memberB/listContractB" extends="baseLayoutB">
+   <definition name="/memberB/contractList" extends="baseLayoutB">
 	      <put-attribute name="title" value="계약내역" />
-	      <put-attribute name="body" value="/WEB-INF/views/memberB/listContractB.jsp" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/contractList.jsp" />
 	</definition>
    
 	<definition name="/memberB/goodsList" extends="baseLayoutB">
@@ -55,6 +80,11 @@
 	<definition name="/memberB/QList" extends="baseLayoutB">
 	      <put-attribute name="title" value="상품문의내역" />
 	      <put-attribute name="body" value="/WEB-INF/views/memberB/QList.jsp" />
+	</definition>
+	
+	<definition name="/memberB/memberDeleteViewB" extends="baseLayoutB">
+	      <put-attribute name="title" value="회원탈퇴창" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/memberDeleteViewB.jsp" />
 	</definition>
 	
 </tiles-definitions>

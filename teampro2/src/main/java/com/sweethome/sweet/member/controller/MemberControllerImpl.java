@@ -1,6 +1,8 @@
 package com.sweethome.sweet.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,15 +48,15 @@ public class MemberControllerImpl   implements MemberController {
 	
 	@Override
 	@RequestMapping(value = { "/","/main.do"}, method = RequestMethod.GET)
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception  {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("html/text;charset=utf-8");
-		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		List goodsList = memberService.listGoods();
-		mav.addObject("goodsList", goodsList);
-		mav.setViewName(viewName);
-		return mav;
+	public Map<String, Object> main(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    request.setCharacterEncoding("utf-8");
+	    response.setContentType("html/text;charset=utf-8");
+	    String viewName = (String) request.getAttribute("viewName");
+	    Map<String, Object> model = new HashMap<String, Object>();
+	    List goodsList = memberService.listGoods();
+	    model.put("goodsList", goodsList);
+	    model.put("viewName", viewName);
+	    return model;
 	}
 	
 	
@@ -275,5 +277,17 @@ public class MemberControllerImpl   implements MemberController {
 	        return "redirect:/main.do";
 	    }
 
-
+		//날씨 정보
+		@Override
+		@RequestMapping(value = { "/","/weather.do"}, method = RequestMethod.GET)
+		public ModelAndView weather(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("html/text;charset=utf-8");
+			String viewName = (String)request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView();
+			List goodsList = memberService.listGoods();
+			mav.addObject("goodsList", goodsList);
+			mav.setViewName(viewName);
+			return mav;
+		}
 }

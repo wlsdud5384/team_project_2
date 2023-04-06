@@ -11,8 +11,7 @@ public class MemberVOB {
 	private String bp_pw;
 	private String name;
 	private String dp_name;
-	private String email1;
-	private String email2;
+	private String email;
 	private String addr1;
 	private String addr2;
 	private String addr3;
@@ -43,8 +42,7 @@ public class MemberVOB {
 					String bp_pw,
 					String name,
 					String dp_name,
-					String email1,
-					String email2,
+					String email,
 					String addr1,
 					String addr2,
 					String addr3,
@@ -64,8 +62,7 @@ public class MemberVOB {
 		this.bp_pw = bp_pw;
 		this.name = name;
 		this.dp_name = dp_name;
-		this.email1 = email1;
-		this.email2 = email2;
+		this.email = email;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.addr3 = addr3;
@@ -123,20 +120,12 @@ public class MemberVOB {
 		this.dp_name = dp_name;
 	}
 
-	public String getEmail1() {
-		return email1;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmail1(String email1) {
-		this.email1 = email1;
-	}
-
-	public String getEmail2() {
-		return email2;
-	}
-
-	public void setEmail2(String email2) {
-		this.email2 = email2;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddr1() {

@@ -1,7 +1,10 @@
 package com.sweethome.sweet.memberB.controller;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +37,47 @@ public class MemberControllerBImpl implements MemberControllerB {
 	private MemberVOB memberVOB ;
 	@Autowired
 	private ContractVO contractVO ;
+	@Autowired
+	private JavaMailSenderImpl mailSender;
 	
+	
+	//회원가입
+	@Override			
+	@RequestMapping(value="/memberB/addMemberB.do" ,method = RequestMethod.POST)
+	public ResponseEntity addMemberB(@ModelAttribute("memberB") MemberVOB memberVOB,
+			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("html/text;charset=utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+		try {
+			memberServiceB.addMemberB(memberVOB);
+			message = "<script>";
+			message +=" alert('회원가입을 마쳤습니다. 로그인창으로 이동합니다.');";
+			message += "location.href='"+request.getContextPath()+"/memberB/loginFormB.do';";
+			message += "</script>";
+		}catch(Exception e) {
+			message = "<script>";
+			message += "alert('오류 발생 다시 시도해 주세요');";
+			message += "location.href='" + request.getContextPath()+"/memberB/memberFormB.do';";
+			message += "</script>";
+			e.printStackTrace();
+		}
+		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
+	}
+	
+	//회원가입시 아이디 중복체크
+	@Override				
+	@RequestMapping(value="/memberB/overlappedB.do" ,method = RequestMethod.POST)
+	public ResponseEntity overlappedB(@RequestParam("bp_id") String bp_id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ResponseEntity resEntity = null;
+		String result = memberServiceB.overlappedB(bp_id);
+		resEntity = new ResponseEntity(result, HttpStatus.OK);
+		return resEntity;
+	}
 	
 	//로그인
 	@Override
@@ -79,47 +125,14 @@ public class MemberControllerBImpl implements MemberControllerB {
 							  @RequestParam(value= "action", required=false) String action,
 						       HttpServletRequest request, 
 						       HttpServletResponse response) throws Exception {
-		String viewNameB = (String)request.getAttribute("viewNameB");
+		String viewName = (String)request.getAttribute("viewName");
 		HttpSession session = request.getSession();
 		session.setAttribute("action", action);  
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result",result);
-		mav.setViewName(viewNameB);
+		mav.setViewName(viewName);
 		return mav;
 	}
-	
-	
-	// 사업자 회원가입 할때 이곳으로 온다
-//	@Override
-//	@RequestMapping(value="/businessForm", method = RequestMethod.POST)
-//	public ResponseEntity addbusiness(@ModelAttribute("memberB") MemberVOB memberVOB,
-//							HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		request.setCharacterEncoding("utf-8");
-//		response.setContentType("html/text;charset=utf-8");
-//		String message = null;
-//		ResponseEntity resEntity = null;
-//		HttpHeaders responseHeaders = new HttpHeaders();
-//		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
-//		try {
-//			memberServiceB.addMember(memberVOB);
-//			message = "<script>";
-//			
-//			message +=" alert('회원가입을 마쳤습니다. 로그인창으로 이동합니다.');";
-//			message += "location.href='"+request.getContextPath()+"/member/loginForm.do';";
-//			message += "</script>";
-//		}catch(Exception e) {
-//			message = "<script>";
-//			message += "alert('오류 발생 다시 시도해 주세요');";
-//			message += "location.href='" + request.getContextPath()+"/member/memberForm.do';";
-//			message += "</script>";
-//			e.printStackTrace();
-//		}
-//		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-//		return resEntity;
-//
-//	}
-//	
-	
 	
 	//회원 정보 수정
 	@Override
@@ -159,46 +172,6 @@ public class MemberControllerBImpl implements MemberControllerB {
 	    return mav;
 	}
 	
-	private String getViewNameB(HttpServletRequest request) throws Exception {
-		String contextPath = request.getContextPath();
-		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
-		if (uri == null || uri.trim().equals("")) {
-			uri = request.getRequestURI();
-		}
-
-		int begin = 0;
-		if (!((contextPath == null) || ("".equals(contextPath)))) {
-			begin = contextPath.length();
-		}
-
-		int end;
-		if (uri.indexOf(";") != -1) {
-			end = uri.indexOf(";");
-		} else if (uri.indexOf("?") != -1) {
-			end = uri.indexOf("?");
-		} else {
-			end = uri.length();
-		}
-
-		String viewName = uri.substring(begin, end);
-		if (viewName.indexOf(".") != -1) {
-			viewName = viewName.substring(0, viewName.lastIndexOf("."));
-		}
-		if (viewName.lastIndexOf("/") != -1) {
-			viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
-		}
-		
-		String viewNameB = uri.substring(begin, end);
-		if (viewNameB.indexOf(".") != -1) {
-			viewNameB = viewNameB.substring(0, viewNameB.lastIndexOf("."));
-		}
-		if (viewNameB.lastIndexOf("/") != -1) {
-			viewNameB = viewNameB.substring(viewName.lastIndexOf("/", 1), viewNameB.length());
-		}
-		
-		return viewName;
-	}
-
 	@Override
 	@RequestMapping(value="/memberB/listContractB" ,method = RequestMethod.GET)
 	public ModelAndView listContractB(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -211,10 +184,131 @@ public class MemberControllerBImpl implements MemberControllerB {
 	    return mav;
 	}
 	
+	//회원탈퇴페이지 get
+	@RequestMapping(value="/memberB/memberDeleteViewB.do", method = RequestMethod.GET)
+	public String deleteUserB() throws Exception{
+	return "/memberB/memberDeleteViewB";
+	}
+			
+					
+	//회원탈퇴 post
+	@RequestMapping(value="/memberB/memberDeleteB.do", method = RequestMethod.POST)
+	public String memberDeleteB(MemberVOB memberVOB, HttpSession session, RedirectAttributes rttr) throws Exception{
+					
+		MemberVOB memberB = (MemberVOB) session.getAttribute("memberB");
+					
+		// 실제 비밀번호
+		String currentPw = memberB.getBp_pw();
+		// 입력한 비밀번호
+		String userInputPw = memberVOB.getBp_pw();
+					
+		if(!(currentPw.equals(userInputPw))) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/memberB/memberDeleteViewB.do";
+			}
+				memberServiceB.memberDeleteB(memberVOB);
+				session.invalidate();
+				return "redirect:/main.do";
+			}
 	
+	//비밀번호 찾기 form
+	@RequestMapping(value = "/find/pwFindB")
+	public String pwFindB() throws Exception{
+		return "/find/pwFindB";
+	}
+	
+	//이메일로 인증번호 보내기
+	@RequestMapping(value = "/find/sendMailB", method = RequestMethod.POST)
+	public ModelAndView sendMailB(HttpSession session, 
+	        @RequestParam("bp_id") String bp_id,
+	        @ModelAttribute("email") String email,
+	        HttpServletRequest request, 
+	        HttpServletResponse response) throws IOException {
+	        
+	    MemberVOB vo = memberServiceB.selectMemberB(email);
+	            
+	    if(vo != null) {
+	        Random r = new Random();
+	        int authNum = r.nextInt(999999);
+	            
+	        if (vo.getBp_id().equals(bp_id)) {
+	            session.setAttribute("email", vo.getEmail());
+	            session.setAttribute("authNum", authNum); // 인증번호를 세션에 저장
 
+	            String setfrom = "bomi258@naver.com";
+	            String tomail = email;
+	            String title = "[스윗홈] 비밀번호변경 인증 이메일 입니다";
+	            String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+	                    + "비밀번호변경 인증번호는 " + authNum + " 입니다." + System.getProperty("line.separator");
+	            try {
+	                MimeMessage message = mailSender.createMimeMessage();
+	                MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
 
+	                messageHelper.setFrom(setfrom); 
+	                messageHelper.setTo(tomail); 
+	                messageHelper.setSubject(title);
+	                messageHelper.setText(content); 
+
+	                mailSender.send(message); 
+	            } catch (Exception e) {
+	                System.out.println(e.getMessage());
+	            }
+
+	            ModelAndView mv = new ModelAndView();
+	            mv.setViewName("/find/checkEmailB");
+	            mv.addObject("msg", "이메일로 인증번호가 발송되었습니다.");
+	            return mv;
+	        } else {
+	            ModelAndView mv = new ModelAndView();
+	            mv.setViewName("/find/pwFindB");
+	            mv.addObject("msg", "등록되지 않은 아이디입니다.");
+	            return mv;
+	        }
+	    } else {
+	        ModelAndView mv = new ModelAndView();
+	        mv.setViewName("/find/pwFindB");
+	        mv.addObject("msg", "등록되지 않은 이메일입니다.");
+	        return mv;
+	    }
+	}
+
+		
+	//이메일 인증번호 확인
+	@RequestMapping(value = "/find/checkEmailB", method = RequestMethod.POST)
+	public ModelAndView checkEmailB(HttpSession session, 
+	        @RequestParam(value="email_injeung") String email_injeung) throws IOException{
+	    ModelAndView mv = new ModelAndView();
+
+	    int authNum = (Integer) session.getAttribute("authNum"); // 세션에서 인증번호를 가져옴
+
+	    if(email_injeung.equals(String.valueOf(authNum))) { // 인증번호 비교
+	        mv.setViewName("/find/pwNewB");
+	        mv.addObject("msg", "인증번호가 일치합니다.");
+	    } else {
+	        mv.setViewName("/find/checkEmailB");
+	        mv.addObject("msg", "인증번호가 일치하지 않습니다.");
+	    }
+	    return mv;
+	}
 
 	
-
+	//새 비밀번호 업데이트
+	@RequestMapping(value = "/find/pwNewB", method = RequestMethod.POST)
+	public String pwNewB(MemberVOB vo, @RequestParam("pw_new_confirm") String pwNewConfirm, HttpSession session, Model model) throws IOException{
+	    if (vo.getBp_pw().equals(pwNewConfirm)) { // 새 비밀번호와 새 비밀번호 확인 값이 일치하는 경우
+	        int result = memberServiceB.pwUpdate(vo);
+	        if(result == 1) {
+	            model.addAttribute("msg", "비밀번호가 변경되었습니다.");
+	            return "/memberB/loginFormB";
+	        }
+	        else {
+	            model.addAttribute("msg", "비밀번호 변경에 실패했습니다.");
+	            return "/find/pwNewB";
+	        }
+	    } else { // 새 비밀번호와 새 비밀번호 확인 값이 일치하지 않는 경우
+	        model.addAttribute("msg", "새 비밀번호와 새 비밀번호 확인 값이 일치하지 않습니다.");
+	        return "/find/pwNewB";
+	    }
+	}
+	
 }

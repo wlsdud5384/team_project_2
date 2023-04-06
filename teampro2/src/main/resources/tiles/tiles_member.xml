@@ -40,8 +40,6 @@
       <put-attribute name="side" value="/WEB-INF/views/main.jsp"/>
    </definition>
   
-    
-    
     	<!-- 로그인 화면 경로 사이드바 는 없앴음 지금은 아마 앞으로도 필요없어 -->
     <definition name="/member/loginForm" extends="baseLayoutB">
       <put-attribute name="title" value="로그인창" />
@@ -66,4 +64,18 @@
       <put-attribute name="title" value="회원상세창" />
       <put-attribute name="body" value="/WEB-INF/views/admin/viewDetail.jsp" />
    </definition> 
+
+   
+   <!-- 날씨정보 -->
+   <definition name="weather" extends="baseLayout">
+      <put-attribute name="title" value="날씨정보창" />
+      <put-attribute name="body" value="/WEB-INF/views/weather.jsp" />
+      <put-attribute name="side" value=""/>
+   </definition>
+
+   		
+   
+   
+   
+
 </tiles-definitions>

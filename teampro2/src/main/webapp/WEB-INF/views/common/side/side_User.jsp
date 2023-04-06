@@ -14,6 +14,6 @@
 	<button class="btnon_s1" onclick="location.href = '${contextPath}/user/userContract.do'">계약내역</button>
 	<button class="btnon_s1" onclick="location.href = '${contextPath}/user/watchList.do'">나의 관심목록</button>
 	<button class="btnon_s1" onclick="location.href = '#'">문의 관리</button>
-	<button class="btnon_s1" onclick="location.href = '#'">쪽지함</button>
+	<button class="btnon_s1" onclick="location.href = '${contextPath}/message/listMessage.do'">쪽지함</button>
 	<button class="btnon_s1" onclick="location.href = '${contextPath}/user/memberDeleteView.do'">회원 탈퇴</button>
 </div>

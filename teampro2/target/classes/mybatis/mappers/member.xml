@@ -3,9 +3,9 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.member">	
+<mapper namespace="mapper.member">   
    <resultMap id="memResult" type="memberVO">
-	  <result property="member_join" column="member_join"/>
+     <result property="member_join" column="member_join"/>
       <result property="member_id" column="member_id" />
       <result property="member_pw" column="member_pw" />
       <result property="name" column="name" />
@@ -88,37 +88,33 @@
    
    <select id="selectAllGoodsList" resultMap="goodsResult"   >
       <![CDATA[
-        select * from goods order by goods_id			
+        select * from goods order by goods_id         
       ]]>
    </select>
 
-			<!-- 인설트멤버 회원 정보를 추가하거나 회원가입 할때 쿼리 구문이다. -->
-	<insert id="insertMember" parameterType="memberVO">
-		<![CDATA[
-			insert into member(member_id, member_pw, name, email1,
-			email2, addr1, addr2, addr3, tel1,
-			tel2, tel3, hp1, hp2, hp3, member_birth)
-			values(#{member_id}, #{member_pw}, #{name}, #{email1}, #{email2},
-			#{addr1}, #{addr2}, #{addr3},  #{tel1}, #{tel2}, #{tel3},
-			#{hp1}, #{hp2}, #{hp3}, #{member_birth} )
-			
-						
-		]]>
-	</insert>
-					<!-- id 중복체크 하기위한 쿼리구문이다.크킄 
-					함수에서 개수가 0보다 큰지 확인하여 ID가 ​​이미 사용 중임을 나타낼 수 있는 쿼리문
-					제발돼라!!!!!!!!!!! 다시원상 복기 03.21  3교시..!!!
-					
-					 -->
-	<select id="selectOverlappedID" parameterType="String" resultType="String">
- 	 select * from member 
-	   where member_id = #{id}
-	</select>
-	
-	
-	
-	
-
+         <!-- 인설트멤버 회원 정보를 추가하거나 회원가입 할때 쿼리 구문이다. -->
+   <insert id="insertMember" parameterType="memberVO">
+      <![CDATA[
+         insert into member(member_id, member_pw, name, email1,
+         email2, addr1, addr2, addr3, tel1,
+         tel2, tel3, hp1, hp2, hp3, member_birth)
+         values(#{member_id}, #{member_pw}, #{name}, #{email1}, #{email2},
+         #{addr1}, #{addr2}, #{addr3},  #{tel1}, #{tel2}, #{tel3},
+         #{hp1}, #{hp2}, #{hp3}, #{member_birth} )
+         
+                  
+      ]]>
+   </insert>
+               <!-- id 중복체크 하기위한 쿼리구문이다.크킄 
+               함수에서 개수가 0보다 큰지 확인하여 ID가 ​​이미 사용 중임을 나타낼 수 있는 쿼리문
+               제발돼라!!!!!!!!!!! 다시원상 복기 03.21  3교시..!!!
+               
+                -->
+   <select id="selectOverlappedID" parameterType="String" resultType="String">
+     select * from member 
+      where member_id = #{id}
+   </select>
+   
 		<!-- update member set member_join=#{member_join}, member_id=#{member_id}, member_pw=#{member_pw}, name=#{name}, 
 		member_birth=#{member_birth}, email=#{email}, hp1=#{hp1}, tel1=#{tel1}, status=#{status}, 
 		addr1=#{addr1}, join_date=#{join_date} where member_id=#{member_id} -->
@@ -159,16 +155,15 @@
 			status=#{status} WHERE member_id=#{member_id} 
 		]]>
 	</update>
-	
-
 
   <select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
-	<![CDATA[
-		select * from member	
-		where member_id=#{member_id} and member_pw=#{member_pw}		
-	]]>
+   <![CDATA[
+      select * from member   
+      where member_id=#{member_id} and member_pw=#{member_pw}      
+   ]]>
   </select>
   <select id="selectMemberById" resultType="memberVO" parameterType="String">
+
 		<![CDATA[
 			select * from member where member_id = #{member_id}
 		]]>
@@ -187,5 +182,6 @@
 	<select id="kakaoNumber" parameterType="kakaoDTO" resultType="kakaoDTO">
 		select * from kakao_table where nickname=#{nickname} and email=#{email}
 	</select>
+
 
 </mapper>

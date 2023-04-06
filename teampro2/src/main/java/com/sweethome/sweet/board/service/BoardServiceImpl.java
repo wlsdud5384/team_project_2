@@ -19,14 +19,16 @@ import com.sweethome.sweet.board.vo.ImageVO;
 public class BoardServiceImpl  implements BoardService{
 	@Autowired
 	BoardDAO boardDAO;
+			
 	
+			// 리스트 보여주기위함
 	public List<ArticleVO> listArticles() throws Exception{
 		List<ArticleVO> articlesList =  boardDAO.selectAllArticlesList();
         return articlesList;
 	}
 
 	
-	//단일 이미지 추가하기
+	//단일 이미지 추가하기 이미지 추가하기 이미지 하나 추가할때 여기 서비스
 	@Override
 	public int addNewArticle(Map articleMap) throws Exception{
 		return boardDAO.insertNewArticle(articleMap);
@@ -57,21 +59,21 @@ public class BoardServiceImpl  implements BoardService{
 	
 	
 	 //단일 파일 보이기
-	@Override
-	public ArticleVO viewArticle(int articleNO) throws Exception {
-		ArticleVO articleVO = boardDAO.selectArticle(articleNO);
+	@Override				// 게시판 글 상세 보여주는곳 서비스
+	public ArticleVO viewArticle(int board_id) throws Exception {
+		ArticleVO articleVO = boardDAO.selectArticle(board_id);
 		return articleVO;
 	}
 	
 	
-	@Override
+	@Override		//수정
 	public void modArticle(Map articleMap) throws Exception {
 		boardDAO.updateArticle(articleMap);
 	}
 	
-	@Override
-	public void removeArticle(int articleNO) throws Exception {
-		boardDAO.deleteArticle(articleNO);
+	@Override		//삭제
+	public void removeArticle(int board_id) throws Exception {
+		boardDAO.deleteArticle(board_id);
 	}
 	
 

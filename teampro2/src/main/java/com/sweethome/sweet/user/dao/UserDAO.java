@@ -9,8 +9,8 @@ import com.sweethome.sweet.member.vo.MemberVO;
 
 public interface UserDAO {
 	
-	//È¸¿øÁ¶È¸
+	//È¸ï¿½ï¿½ï¿½ï¿½È¸
 	public MemberVO selectMyDetailInfo(String member_id)throws Exception;
-	//È¸¿øÅ»Åð
+	//È¸ï¿½ï¿½Å»ï¿½ï¿½
 		public void memberDelete(MemberVO memberVO)throws Exception;
 }

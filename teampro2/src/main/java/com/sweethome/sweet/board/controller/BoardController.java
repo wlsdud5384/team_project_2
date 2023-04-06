@@ -12,14 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface BoardController {
 	
+							//목록나오게
 	public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+							//추가~
 	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest,HttpServletResponse response) throws Exception;
 	
-	public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO,
+	
+							//상세보려고~
+	public ModelAndView viewArticle(@RequestParam("board_id") int board_id,
 			                        HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+							//아마 수정
 	public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception;
-	public ResponseEntity  removeArticle(@RequestParam("articleNO") int articleNO,
+	
+							//지우는거
+	public ResponseEntity  removeArticle(@RequestParam("board_id") int board_id,
                               HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
 
 }

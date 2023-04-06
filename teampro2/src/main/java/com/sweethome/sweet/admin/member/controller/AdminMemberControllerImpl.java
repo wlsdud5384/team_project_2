@@ -153,6 +153,21 @@ public class AdminMemberControllerImpl   implements AdminMemberController {
 		return mav;
 	}
 	
+	//부동산 API 활용 매매데이터 다운로드
+	
+	@Override
+	@RequestMapping(value="/admin/dataview.do" ,method = RequestMethod.GET)
+	public ModelAndView dataview(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("html/text;charset=utf-8");
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+	
+	
+	
+	
 	// 여기는 회원정지 하기 위함 회원 정지 누를시 여기로 오게된다. .do 실행되면
 	@Override
 	@RequestMapping(value="/admin/stopMember.do", method = RequestMethod.POST)

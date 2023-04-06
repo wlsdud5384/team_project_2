@@ -468,7 +468,7 @@ function execDaumPostcode() {
   <div class="sign">
     <h3 style="margin-right:15px;">회원구분</h3><h5 style="font-size: 14px;"><b>사용자</b></h5>
     
-    	<a href="#"><h5  style="margin-left: 35px; ">사업자 회원</h5></a>
+    	<a onclick="location.href = '${contextPath}/memberB/memberFormB.do'"><h5  style="margin-left: 35px; ">사업자 회원</h5></a>
     	<<- 사업자회원가입시 클릭하세요.!!
 
      	

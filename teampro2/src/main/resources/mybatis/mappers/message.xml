@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="mapper.message">
+
+	<!-- 쪽지 등록 -->
+	<insert id="insertMessage" parameterType="String">
+	<![CDATA[
+			insert into t_note (title,content,send_id,recv_id)
+			values (#{title},#{content},#{send_id},#{recv_id})
+	]]>
+	</insert>
+	
+	
+	<!-- 쪽지 조회(사용자) -->
+	<select id="selectAllMessageList" resultType="messageVO" parameterType="String">
+	<![CDATA[
+		select t_note.no, t_note.send_id, t_note.recv_id, t_note.title, t_note.writeDate
+		from t_note 
+		join member as send_member on t_note.send_id = send_member.member_id
+		join member as recv_member on t_note.recv_id = recv_member.member_id 
+		where t_note.send_id = #{send_id} or t_note.recv_id = #{recv_id}
+		order by t_note.no desc
+	]]>
+	</select>
+	
+	<!-- 상세 쪽지 불러오기 -->
+	<select id="noteRead" resultType="messageVO" parameterType="String">
+	<![CDATA[
+			select no,send_id,recv_id,title,content,writeDate
+			from t_note
+			where no=#{no}
+	]]>
+	</select>
+	
+	<!-- 쪽지 삭제 -->
+	<delete id="noteDelete">
+	<![CDATA[
+		delete from t_note where no=#{no}
+	]]>	
+	</delete>
+	
+</mapper>

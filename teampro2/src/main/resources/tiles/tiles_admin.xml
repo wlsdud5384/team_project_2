@@ -20,6 +20,12 @@
 	</definition>
 	
 	
+	<definition name="/admin/dataview" extends="baseLayoutA">
+      <put-attribute name="title" value="부동산데이터 센터" />
+      <put-attribute name="body" value="/WEB-INF/views/admin/dataview.jsp" />
+   </definition>
+	
+	
 	
 	
 

@@ -117,7 +117,11 @@ padding: 0.5rem 1rem;
 }
 
 .btn:hover {
-background-color: #3e8e41;
+border-radius: 4px;
+font-size: 13px;
+font-weight: bold;
+background-color: #112d4e;
+color: white;
 }
   </style>
   
@@ -126,10 +130,8 @@ background-color: #3e8e41;
 		location.href = "./goodsDetail";
 	}
   function goodsAdd() {
-		location.href = "./goodsAdd";
 	}
   function goodsMod() {
-		location.href = "./goodsMod";
 	}
   function goodsDel() {
 		if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까?')){
@@ -243,7 +245,7 @@ $('#btnSearch').click(function(){
           <td>계약자: bom123</td>
           <td>2023.03.14</td>
           <td>좋아요</td>
-          <td><b>처리상태</b></td>
+          <td><b>계약진행중</b></td>
           <td><button class="btn" type="submit" onclick="goodsMod()">수정하기</button></td>
       	  <td><button class="btn" type="submit" onclick="goodsDel()">삭제하기</button></td>
         </tr>
@@ -253,7 +255,7 @@ $('#btnSearch').click(function(){
           <td>계약자: bom123</td>
           <td>2023.03.14</td>
           <td>좋아요</td>
-          <td><b>처리상태</b></td>
+          <td><b>계약완료</b></td>
           <td><button class="btn" type="submit" onclick="goodsMod()">수정하기</button></td>
       	  <td><button class="btn" type="submit" onclick="goodsDel()">삭제하기</button></td>
         </tr>
@@ -263,7 +265,7 @@ $('#btnSearch').click(function(){
           <td>계약자: bom123</td>
           <td>2023.03.14</td>
           <td>좋아요</td>
-          <td><b>처리상태</b></td>
+          <td><b>계약완료</b></td>
           <td><button class="btn" type="submit" onclick="goodsMod()">수정하기</button></td>
       	  <td><button class="btn" type="submit" onclick="goodsDel()">삭제하기</button></td>
         </tr>

@@ -99,7 +99,11 @@ padding: 0.5rem 1rem;
 }
 
 .btn:hover {
-background-color: #3e8e41;
+border-radius: 4px;
+font-size: 13px;
+font-weight: bold;
+background-color: #112d4e;
+color: white;
 }
 
 /* 상품 등록 버튼 스타일링 */
@@ -117,6 +121,14 @@ background-color: #3e8e41;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.col button:hover {
+border-radius: 4px;
+font-size: 16px;
+font-weight: bold;
+background-color: #112d4e;
+color: white;
 }
 
   </style>

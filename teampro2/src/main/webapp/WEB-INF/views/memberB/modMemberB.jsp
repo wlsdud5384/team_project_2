@@ -17,27 +17,19 @@ p {
   margin-right: 10px;
 }
 
+#num {
+margin-right:10px; width:110px;
+}
+
 input[type="text"],
 input[type="password"] {
-  width: 75%;
+  width: 35%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 20px;
   font-size: 16px;
-}
-
-#zipcodbtn {
-  float: right;
-  margin-left: 0px;
-  margin-top: 25px;
-}
-
-#sample6_postcode, #num {
-  float: left;
-  width: 100px;
-  margin-top: 5px;
 }
 
 input[type="button"],
@@ -65,12 +57,6 @@ input[type="reset"]:hover {
 </style>
  
 <script type="text/javascript">
-/* 전화번호 */
-function oninputPhone(target) {
-    target.value = target.value
-        .replace(/[^0-9]/g, '')
-        .replace(/([0-9]{3,4})([0-9]{4})/g, "$1-$2");
-}
 
 /* 수정완료 */
 function fn_sub(obj){
@@ -81,9 +67,8 @@ function fn_sub(obj){
 
 </head>
 <body>
-
+<h1>회원 정보 수정</h1>
 <form name="frm" method="post" action="${contextPath }/memberB/updateMemberB">
-		<h1>회원 정보 수정</h1>
 		<table align="center">
 			<c:if test="${memberB != null }">
 			<tr>
@@ -100,24 +85,26 @@ function fn_sub(obj){
 			</tr>
 			<tr>
 				<td><p>이메일</p></td>
-				<td><input type="text" name="email1" value="${memberB.email1 }"></td>
+				<td><input type="text" name="email" value="${memberB.email }"></td>
 			</tr>
 			<tr>
 				<td>주소</td>
-				<td><input type="button" id="zipcodbtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="sample6_postcode" placeholder="우편번호" name="zipcode" size="10" placeholder="우편번호">
-				<input type="text" id="sample6_address" placeholder="주소" name="addr1" value="${memberB.addr1 }"><br>
-				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addr2" value="${memberB.addr2 }">
+				<td><input type="text" id="sample6_postcode" name="addr1" value="${memberB.addr1 }" size="10" style="margin-right:20px; width:110px;">
+				<input type="button" id="zipcodbtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="margin-bottom:30px;"> <br>
+				<input type="text" id="sample6_address" name="addr2" value="${memberB.addr2 }"  style="margin-right:10px; width:250px;">
+				<input type="text" id="sample6_detailAddress" name="addr3" value="${memberB.addr3 }"></td>
 			</tr>
 			<tr>
 				<td><p>전화번호</p></td>
-				<td><input type="text" id="num" name="tel1" value="${memberB.tel1 }" style="margin-right:20px;">
-				<input type="text" id="num" name="tel2" value="${memberB.tel2 }" style="margin-right:20px; width:118px;" oninput="oninputPhone(this)"></td>
+				<td><input type="text" id="num" name="tel1" value="${memberB.tel1 }">
+				<input type="text" id="num" name="tel2" value="${memberB.tel2 }">
+				<input type="text" id="num" name="tel3" value="${memberB.tel3 }"></td>
 			</tr>
 			<tr>
 				<td><p>휴대전화</p></td>
-				<td><input type="text" id="num" name="hp1" value="${memberB.hp1 }" style="margin-right:20px;">
-				<input type="text" id="num" name="hp2" value="${memberB.hp2 }" style="margin-right:20px; width:118px;" oninput="oninputPhone(this)"></td>
+				<td><input type="text" id="num" name="hp1" value="${memberB.hp1 }">
+				<input type="text" id="num" name="hp2" value="${memberB.hp2 }">
+				<input type="text" id="num" name="hp3" value="${memberB.hp3 }"></td>
 			</tr>
 			<tr>
 				<td></td>

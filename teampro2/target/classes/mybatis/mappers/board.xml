@@ -5,100 +5,142 @@
 
 <mapper namespace="mapper.board">
 <resultMap id="articlesResult" type="articleVO">
-    <result property="level" column="level" />
-    <result property="articleNO" column="articleNO" />
-    <result property="parentNO" column="parentNO" />
+    <result property="board_id" column="board_id" />
     <result property="title" column="title" />
     <result property="content" column="content" />
-    <result property="writeDate" column="writeDate" />
-    <result property="imageFileName" column="imageFileName" />
+    <result property="img1" column="img1" />
+    <result property="img2" column="img2" />
+    <result property="img3" column="img3" />
+    <result property="img4" column="img4" />
+    <result property="img5" column="img5" />
+    <result property="new_date" column="new_date" />
+    <result property="remove_date" column="remove_date" />
+    <result property="delete_date" column="delete_date" />
+    <result property="status" column="status" />
+    <result property="like_type" column="like_type" />
+    <result property="mem_id" column="mem_id" />
+    <result property="views" column="views" />
+    <result property="member_id" column="member_id" />
+  
   </resultMap> 
   
   <resultMap id="imgResult" type="imageVO">
 	  <result property="imageFileNO" column="imageFileNO" />
-	  <result property="articleNO" column="articleNO" />
+	  <result property="borad_id" column="borad_id" />
 	  <result property="imageFileName" column="imageFileName" />
  </resultMap>
-
+			
+			
+			
+			<!-- 자유게시판 목록 나올수있도록 만들어진 순서대로 -->
   <select id="selectAllArticlesList" resultMap="articlesResult"   >
     <![CDATA[
-            SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),'<'), board.title) ELSE board.title END AS title, board.articleNO, board.parentNO, result.level, board.content, board.id, board.writeDate 
-            FROM  (SELECT function_hierarchical() AS articleNO, @level AS level  FROM (SELECT @start_with:=0, @articleNO:=@start_with, @level:=0) tbl JOIN t_board) result 
-            JOIN t_board board ON board.articleNO = result.articleNO
+       select * from free_board order by new_Date
     ]]>
   </select>
   
-	<!--단일이미지 추가  -->
-	 
-  <insert id="insertNewArticle"  parameterType="java.util.Map">
-		  
-		<![CDATA[
-		
-			INSERT into t_board(articleNO,  title, content, imageFileName, id)
-			VALUES(#{articleNO} ,#{title},	#{content}, #{imageFileName},	#{id})
-		]]>      
+  <!-- 이거 글쓰기 눌렀을때다!!!이거!
+		title 제목, 내용 멤버아이디 갖고와서 넣음 그리고 이미지도
+			
+		 -->
+    <insert id="insertNewArticle" parameterType="java.util.Map">
+	    <![CDATA[
+	        insert into free_board (title, content, member_id, img1) 
+	        values(#{title}, #{content}, #{member_id}, #{img1})
+	     ]]>
 	</insert>
 	
-  <select id="selectNewArticleNO" resultType="int"  >
+	
+				<!--글쓰기 추가할때 하기위함  
+					쿼리구문 은 free_board에서 board_id 컬럼에서 가장 큰 값을 찾아온다
+					그래서 1을 더해 새로운 게시판 id 를 생성해주고
+					데이터가 없을 때 는 0 을 반환하면서 1을 더해서 첫번째 게시판 id 를 생성
+					이렇게하면 중복 id 방지할수있다.
+				-->
+  <select id="selectNewboard_id" resultType="int"  >
 		<![CDATA[
-			SELECT  ifnull(max(articleNO), 0)+1 from t_board		
+			SELECT  ifnull(max(board_id), 0)+1 from free_board
 		]]>
 	</select>
-	
-  <select id="selectArticle" resultType="ArticleVO"   parameterType="int">
-    <![CDATA[
-      SELECT * from t_board
-      where articleNO = #{articleNO}		
-    ]]>
-  </select>
   
-  <update id="updateArticle"  parameterType="java.util.Map">
-			update t_board
-			set title=#{title},	 
-			content=#{content}
-			 <if test="imageFileName!='' and imageFileName!=null">
-			   , imageFileName=#{imageFileName}
-			</if>
-			where articleNO=#{articleNO}
-	</update>
-	
-	<delete id="deleteArticle"  parameterType="int">
-    <![CDATA[
-       delete FROM  t_board where  parentNO = #{articleNO} or articleNO = #{articleNO}
-    ]]>      
-  </delete>
-
- <!--다중 이미지 추가 SQL문 -->   
-  <!--
-    <insert id="insertNewArticle"  parameterType="java.util.Map">
-    <![CDATA[
-      insert into t_board(articleNO, id, title, content, imageFileName)
-      values(#{articleNO}, #{id}, #{title}, #{content}, null)
-    ]]>      
-  </insert>
-
+  		<!-- 게시판 글 상세 보여주는 xml dao 에서 이어진다. -->
+  <select id="selectArticle" resultType="ArticleVO"   parameterType="int">
+		    <![CDATA[
+		       SELECT * from free_board 
+		       where board_id = #{board_id}
+		     ]]> 
+  </select>
+  	
+  	
+  			<!-- 제목 클릭시 조회수 증가 -->
+  <update id="views" parameterType="int">
+  	UPDATE free_board set views = views WHERE SEQ = #{views}
+  	
+  </update>
+  
+  
+  
  
+	<!--단일이미지 추가 이미지 추가 
+			이미지 추가할때 이미지
+	 -->
+	 		<!-- 이거 뭐냐 안쓰는건가 -->
+<!--   <insert id="insertNewboard" parameterType="map"> -->
+<!--     <![CDATA[ -->
+<!--          insert into free_board (board_id, title, content, member_id)  -->
+<!--          values (#{board_id}, #{title}, #{content}, #{member_id})  -->
+<!--      ]]>  -->
+<!-- </insert> -->
+			
+			
+
+	
+	
+  
+  						<!--  수정할때 쓰기 위한듯 -->
+<!--   <update id="updateArticle"  parameterType="java.util.Map"> -->
+<!-- 			update t_board -->
+<!-- 			set title=#{title},	  -->
+<!-- 			content=#{content} -->
+<!-- 			 <if test="imageFileName!='' and imageFileName!=null"> -->
+<!-- 			   , imageFileName=#{imageFileName} -->
+<!-- 			</if> -->
+<!-- 			where articleNO=#{articleNO} -->
+<!-- 	</update> -->
+	
+						<!-- 지울때 쓰려고 -->
+<!-- 	<delete id="deleteArticle"  parameterType="int"> -->
+<!--     <![CDATA[ -->
+<!--        delete FROM  t_board where  parentNO = #{articleNO} or articleNO = #{articleNO} -->
+<!--     ]]>       -->
+<!--   </delete> -->
+
+ <!--다중 이미지 추가 SQL문 -->
+ 
+				
+
+ 					<!--  다중이미지 파일 이미지 넣을라고 하는거-->
    <insert id="insertNewImage"  parameterType="java.util.Map">
     <foreach item="item"  collection="list"   open="INSERT ALL" 
                   separator=" " close="SELECT * FROM DUAL" >
-      INTO t_imageFile(imageFileNO, imageFileName, articleNO, regDate)
-      VALUES (#{item.imageFileNO}, #{item.imageFileName}, #{item.articleNO}, sysdate)
+      INTO t_imageFile(imageFileNO, imageFileName, board_id, regDate)
+      VALUES (#{item.imageFileNO}, #{item.imageFileName}, #{item.board_id}, sysdate)
     </foreach>
   </insert>
- -->
  
+ 						<!-- 이것도 이미지 뭐뭐뭐  -->
   <select id="selectNewImageFileNO" resultType="int"  >
     <![CDATA[
-      SELECT  ifnull(max(imageFileNO),0) from t_imageFile		
-    ]]>
+       SELECT  ifnull(max(imageFileNO),0) from img1	 
+     ]]> 
   </select>
 	
-
+				<!-- 이미지 목록 뭐시기 하는거 같은데  -->
   <select  id="selectImageFileList" resultMap="imgResult" parameterType="int">
     <![CDATA[
-      SELECT * from t_imageFile
-      where articleNO=#{articleNO}	
-    ]]>
+       SELECT * from free_board 
+       where board_id=#{board_id}	 
+     ]]> 
   </select> 
   
 </mapper>

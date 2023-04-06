@@ -12,5 +12,14 @@
 		<!-- 사업자 VO  -->		
 		<typeAlias type="com.sweethome.sweet.memberB.vo.MemberVOB"  alias="memberVOB" />
 		<typeAlias type="com.sweethome.sweet.memberB.vo.ContractVO"  alias="contractVO" />
+
+		
+		<!-- 상품 -->
+		<typeAlias type="com.sweethome.sweet.goods.vo.GoodsVO"  alias="goodsVO" />
+		<typeAlias type="com.sweethome.sweet.goods.vo.ImageFileVO"  alias="imageFileVO" />
+
+		<!-- 메세지 -->
+		<typeAlias type="com.sweethome.sweet.message.vo.MessageVO" alias="messageVO"/>
+
 	</typeAliases>
 </configuration>

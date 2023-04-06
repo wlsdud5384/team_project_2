@@ -28,6 +28,9 @@ h2 {
 	display: flex;
 	justify-content: space-between;
 }
+article {
+	margin: 00px 0px 0px 15px; width: 1350px; float: left;
+}
 
 .hc {
 	width: 260px;
@@ -152,7 +155,10 @@ body {
 
 <body>
 <h1>로그인</h1>
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/김진영
 <main class="hc">
 	<h2>로그인</h2>
 	<hr>
@@ -178,9 +184,9 @@ body {
 			<button class="btnon btnon1" type="submit" id="loginBtn">로그인</button>
 		</form>
 		<br>
-		<button class="btnon btnon1" onclick="location.href = '#'">회원가입</button>
+		<button class="btnon btnon1" onclick="location.href = '${contextPath}/memberB/memberFormB.do'">회원가입</button>
 		<br>
-		<button class="btnon btnon1" onclick="location.href = '#'">아이디/비밀번호 찾기</button>
+		<button class="btnon btnon1" onclick="location.href = '${contextPath}/find/pwFindB'">비밀번호 찾기</button>
 	</div>
 </main>
 

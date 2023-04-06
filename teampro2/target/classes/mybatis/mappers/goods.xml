@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.goods">
+
+	<resultMap id="goodsResult" type="goodsVO">
+		<result property="goods_id" column="goods_id" />
+		<result property="name" column="name" />
+		<result property="img1" column="img1" />
+		<result property="img2" column="img2" />
+		<result property="img3" column="img3" />
+		<result property="img4" column="img4" />
+		<result property="img5" column="img5" />
+		<result property="img6" column="img6" />
+		
+		<result property="type" column="type" />
+		<result property="floor" column="floor" />
+		<result property="area" column="area" />
+		<result property="room_num" column="room_num" />
+		<result property="bthroom_num" column="bthroom_num" />
+		<result property="homeDrctn" column="homeDrctn" />
+		<result property="ht_type" column="ht_type" />
+		
+		<result property="parking" column="parking" />
+		<result property="parking_pay" column="parking_pay" />
+		<result property="elevator" column="elevator" />
+		<result property="veranda" column="veranda" />
+		<result property="mainUse" column="mainUse" />
+		
+		<result property="move_in_date" column="move_in_date" />
+		<result property="using_date" column="using_date" />
+		<result property="make_date" column="make_date" />
+		<result property="remove_date" column="remove_date" />
+		<result property="goods_bp_id" column="goods_bp_id" />
+		<result property="daposit" column="daposit" />
+		<result property="jeonse" column="jeonse" />
+		<result property="payment" column="payment" />
+		<result property="m_payment" column="m_payment" />
+		<result property="b_payment" column="b_payment" />
+		<result property="main_cost" column="main_cost" />
+		
+		<result property="content" column="content" />
+		<result property="location_x" column="location_x" />
+		<result property="location_y" column="location_y" />
+		<result property="status" column="status" />
+		<result property="like" column="like" />
+		<result property="addr1" column="addr1" />
+		<result property="addr2" column="addr2" />
+		<result property="region" column="region" />
+		
+	</resultMap>	
+	
+	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
+	    <![CDATA[
+		     select * from goods 
+		     where goods_id = #{goods_id}
+    	]]>
+	</select>
+	
+
+</mapper> 

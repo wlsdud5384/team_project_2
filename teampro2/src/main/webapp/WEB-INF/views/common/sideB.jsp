@@ -9,9 +9,9 @@
 <div style="min-height: 500px; ">
 	<button class="btnon_s1" onclick="location.href = 'myPageMainB'">마이페이지</button>
 	<button class="btnon_s1" onclick="location.href = 'modMemberB?bp_id=${memberB.bp_id}'">회원정보수정</button>
-	<button class="btnon_s1" onclick="location.href = 'listContractB?bp_id=${contractListB.bp_id}'">계약 관리</button>
+	<button class="btnon_s1" onclick="location.href = 'contractList'">계약 관리</button>
 	<button class="btnon_s1" onclick="location.href = 'goodsList'">상품 관리</button>
 	<button class="btnon_s1" onclick="location.href = 'QList'">문의 관리</button>
 	<button class="btnon_s1" onclick="location.href = '#'">쪽지함</button>
-	<button class="btnon_s1" onclick="location.href = '#'">회원 탈퇴</button>
+	<button class="btnon_s1" onclick="location.href = '${contextPath}/memberB/memberDeleteViewB.do'">회원 탈퇴</button>
 </div>
